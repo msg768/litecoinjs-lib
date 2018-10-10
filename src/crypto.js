@@ -20,10 +20,16 @@ function hash256 (buffer) {
   return sha256(sha256(buffer))
 }
 
+function keccak256 (buffer) {
+  let tmp = new sha3.update(buffer)
+  return new Buffer(tmp.digest('hex'), 'hex')
+}
+
 module.exports = {
   hash160: hash160,
   hash256: hash256,
   ripemd160: ripemd160,
   sha1: sha1,
-  sha256: sha256
+  sha256: sha256,
+  keccak256: keccak256
 }
